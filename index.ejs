@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+ <meta charset="UTF-8"> 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ <title>Inventory</title> 
+</head> 
+<body> 
+ <h1>Inventory List</h1> 
+ 
+ <form action="/add" method="POST"> 
+ <h2>Add New Item</h2> 
+ <input type="text" name="name" placeholder="Item Name" required> 
+ <input type="number" name="quantity" placeholder="Quantity" required> 
+ <input type="number" name="price" placeholder="Price" required> 
+ <button type="submit">Add Item</button> 
+ </form> 
+ <h2>Items</h2> 
+ <ul> 
+ <% items.forEach(item => { %> 
+ <li> 
+ <strong><%= item.name %></strong> - Quantity: <%= item.quantity %>, Price: <%= 
+item.price %> 
+ <form action="/update/<%= item._id %>" method="POST" style="display:inline;"> 
+ <input type="text" name="name" value="<%= item.name %>" required> 
+ <input type="number" name="quantity" value="<%= item.quantity %>" required> 
+ <input type="number" name="price" value="<%= item.price %>" required> 
+ <button type="submit">Update</button> 
+ </form> 
+ <form action="/delete/<%= item._id %>" method="POST" style="display:inline;"> 
+ <button type="submit">Delete</button> 
+ </form> 
+ </li> 
+ <% }) %> 
+ </ul> 
+</body> 
+</html>
